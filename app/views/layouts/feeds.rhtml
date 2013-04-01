@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01//EN” 
+“http://www.w3.org/TR/html4/strict.dtd”>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Feeds: <%= controller.action_name.capitalize %></title>
+  <%= javascript_include_tag :defaults %> 
+<!-- Source file -->
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.2/build/fonts/fonts-min.css">
+<!-- Source File -->
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.2/build/reset/reset-min.css">
+<%= stylesheet_link_tag 'scaffoldx', 'cheepr' %>
+
+</head>
+
+<body>
+
+	<%= image_tag 'loading.gif', :id=>'spinner', :style=>"display:none; float:right;" %> 
+	
+	<h1><a href="/">cheepr.com</a></h1>
+	<h2>get your amazon stuff for less</h2>
+	<p style="color: green"><%= flash[:notice] %></p> 
+
+<%= yield  %>
+
+</body>
+</html>

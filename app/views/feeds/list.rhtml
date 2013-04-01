@@ -1,0 +1,27 @@
+<h1>Listing feeds</h1>
+
+<table>
+  <tr>
+  <% for column in Feed.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for feed in @feeds %>
+  <tr>
+  <% for column in Feed.content_columns %>
+    <td><%=h feed.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => feed %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => feed %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => feed }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @feed_pages.current.previous } if @feed_pages.current.previous %>
+<%= link_to 'Next page', { :page => @feed_pages.current.next } if @feed_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New feed', :action => 'new' %>

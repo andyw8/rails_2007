@@ -1,0 +1,60 @@
+<div id="preview">
+	<h2>Marketplace Listings</h2>
+	
+<p>
+<%
+@ecs = Ecs.new
+
+#unless params[:feed].blank?
+#	maxPrice = params[:feed][:max_price]
+#end
+
+if params[:id].blank?
+	# ajax request (	POST?)
+	allOffers = @ecs.getOffers(params[:feed][:id], params[:feed][:max_price]) %>
+ <!--Limiting price to <%= params[:feed][:max_price] %>	-->
+<%
+else
+	# standard GET request
+	allOffers = @ecs.getOffers(params[:id], nil) %>
+<!--	No price limit,  params[:id] = <%=  params[:id] %> -->
+<%
+end
+
+if allOffers.length == 0 %>
+ 	<h2>No listings found matching your criteria.</h2>
+<% else %>
+		
+		<table id="tpreview">
+			<tr>
+				<th>Price</th>
+				<th>Condition</th>
+				<th>Seller Information</th>
+				<th>Options</th>
+			</tr>
+<%		allOffers.each { |offer|
+			%>
+			<tr>
+				<td><span id="price"><%= offer["formattedprice"] %></span><br><%= offer["amount"] %></td>
+				<td><strong><%= offer["condition"] %></strong></td>
+				<td>
+					<p><strong>Seller:</strong> <%= link_to(offer["nickname"].upcase, offer["glancepage"]) %></p>
+					<p><strong>Rating:</strong> <%= link_to("% positive", offer["glancepage"]) %> <%= offer["averagefeedbackrating"] %>, total <%= offer["totalfeedback"] %></p>					<p><strong>Shipping:</strong>
+						 {In Stock}. Ships from <!--<%= offer["city"] %>-->, <%= offer["country"] %>.
+						<!--
+						<% if true %>Expedited shipping available<% end %>
+						<% if true %>International shipping available<% end %>
+					-->
+						See <a href="http://www.amazon.com/gp/help/customer/display.html/?nodeId=537734">shipping rates</a>
+					<p><strong>Comments:</strong> <%= offer["conditionnote"] %>
+				</td>
+				<td><%= link_to('Buy It', :action => 'buy', :id => offer["exchangeid"]) %><br>
+				<%= button_to('Block Seller', :action => 'block_seller', :id => offer["sellerid"]) %><br>
+				<%= button_to('Block Exchange', :action => 'block_listing', :id => offer["exchangeid"]) %><br>
+					 </td>
+			</tr>
+		<% } %>
+	</table>
+	<% end %>
+
+</div>

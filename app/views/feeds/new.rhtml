@@ -1,0 +1,26 @@
+<%= error_messages_for 'feed' %>
+
+<p>To get started just enter an ASIN, ISBN or a product to search for.</p>
+
+<% form_remote_tag :url => {:action => :search} do %>
+
+  <%= text_field_tag "search_string" %>
+
+<select>
+	<option>amazon.co.uk</option>
+</select>
+<!--
+  <x select_tag :amazon_region_id, AmazonRegions.find(:all).collect {|r| [ r.domain, r.id ] } x>
+-->
+
+<%= submit_tag 'Go' %>
+
+<% end %>
+
+<div id="searchresults" style="display: none;">
+
+</div>
+
+<!--Alternatively, enter your email address to retrieve your Amazon wishlist:-->
+
+<!--<%= link_to 'Back', :action => 'list' %>-->

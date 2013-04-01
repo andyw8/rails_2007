@@ -1,0 +1,14 @@
+<h1>Editing feed</h1>
+
+<%= link_to_function "About...", 
+"Dialog.alert({url: 'http://localhost:3000', options: {method: 'get'}}, 
+{windowParameters: {className: 'default'}, 
+okLabel: 'Close'});" %> 
+
+<% form_for :feed, :url => {:action => :update, :id => @feed} do |form| %> 
+  <%= render :partial => 'form', :locals => {:form => form} %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @feed %> |
+<%= link_to 'Back', :action => 'list' %>

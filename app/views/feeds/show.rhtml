@@ -1,0 +1,30 @@
+<p style="font-weight: bold;">Your Custom Feed:</h2> <%= text_field_tag '', 'http://www.cheepr.com/feeds/rss/'.to_s + @feed.id.to_s, {:size => 40, :readonly => true} %>
+<!--
+<%= auto_discovery_link_tag(:rss, :action => 'rss', :id => @feed.id  ) %>
+-->
+<p>Subscribe using (almost!) any feed reader:
+<!-- AddThis Feed Button BEGIN -->
+<a href="http://www.addthis.com/feed.php?pub=GAEQ4LP0IXHXXQWQ&h1=http%3A%2F%2Fcheepr.com%2Ffeed%2Frss%2F<%= @feed.id.to_s %>&t1=" title="Subscribe using any feed reader!"><img src="http://s9.addthis.com/button2-fd.png" width="160" height="24" border="0" alt="AddThis Feed Button" /></a>
+<!-- AddThis Feed Button END -->
+</p>
+
+<!--
+<hr>
+ASIN: <%= @feed.asin %><br/>
+Price: <%= @feed.formatted_price(@feed.min_price) %> to
+<%= @feed.formatted_price(@feed.max_price) %><br/>
+Conditions:<%= @feed.condition_new %>
+<%= @feed.condition_used %>
+<%= @feed.condition_collectable %><br/>
+Min Feedback: <%= @feed.min_feedback_count %><br/>
+Region: <%= @feed.amazon_region_id %>
+Min Star Rating: <%= @feed.min_star_rating %><br/>
+Date Created: <%= @feed.date_created %><br/>
+Include: <%= @feed.text_include %><br/>
+Exclude: <%= @feed.text_exclude %><br/>
+International: <%= @feed.include_international %><br/>
+New Sellers: <%= @feed.include_new_sellers %><br/>
+
+-->
+
+<p><%= link_to 'Edit', :action => 'edit', :id => @feed %>

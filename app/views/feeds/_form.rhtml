@@ -1,0 +1,19 @@
+<%= error_messages_for 'feed' %>
+
+<!--[form:feed]-->
+<p><!-- <label for="feed_region">Amazon Region</label> {change this to grayed-out logos}<br/>-->
+
+<p><!-- <label for="feed_asin">ASIN or ISBN</label><br/>-->
+<%= form.text_field :asin, :size => 20 %>
+
+<%= form.select :amazon_region_id, AmazonRegions.find(:all).collect {|r| [ r.domain, r.id ] } %>
+
+<%= submit_tag 'Go' %>
+
+</p>
+
+<!--[eoform:feed]-->
+
+<% unless params[:asin].blank? %>
+<%= render(:partial => "search") %> 
+<% end %>

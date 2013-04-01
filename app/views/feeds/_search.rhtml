@@ -1,0 +1,21 @@
+<h2>Search Results</h2>
+<% begin
+	ecs = Ecs.new
+	
+	results = ecs.search(params[:search_string]) %>
+	
+	<p><%= results.length  %> items found
+	
+<%	unless response.blank? %>
+	<p>Please choose a product</p>
+	<ul>
+	<% results.each do |product| %>
+		<li><%= link_to(product['title'], :action => 'options', :id => product['asin']) %>	
+		</li>
+		<% end %>
+	</ul>
+  <%  end
+rescue => data %>
+	<p><%= h(data) %></p>
+ <%  end%>
+

@@ -1,0 +1,10 @@
+wishlist
+<% response = AmazonStuff.wishlist_search %>
+<%= response.products.to_s %>
+<ul>
+	
+<% response.products.each do |product| %>
+	<li><%= image_tag(product[:image_url_small]) %><%= link_to(product[:product_name], :action => 'options', :id => product[:asin]) %>	
+	(<%= product[:authors].to_s %>)</li>
+	<% end %>
+</ul>

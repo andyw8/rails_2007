@@ -1,0 +1,32 @@
+
+#advancedOptions {
+	background-color: #DDDDDD;
+	padding: 1em;
+}
+
+BODY {font-size:107%; font-family: "Georgia";} /*renders 14px */
+BODY {margin-left: 10%; margin-right: 10%; margin-top: 1em;}
+H1 {font-size: 152%;
+	font-family: "Verdana";
+	font-weight: bold;
+}
+
+H2 {font-size: 122%;
+		font-family: "Verdana";
+		font-weight: bold;
+		margin-bottom: 0.5em;}
+		
+
+		H3 {font-size: 112%; /* CHECK THIS!!! */
+				font-family: "Verdana";
+				font-weight: bold;
+				margin-bottom: 0.5em;}
+	
+H1 a {text-decoration: none;}
+STRONG {font-weight: bold;}
+
+P {margin-bottom: 1em;}
+
+TABLE#tpreview TD, TABLE#tpreview TH {border: 1px solid silver; vertical-align: top; padding: 0.5em; font-size: 85%;}
+TABLE#tpreview TH {background-color: silver};
+TABLE#tpreview TD SPAN#price {color: yellow;} 

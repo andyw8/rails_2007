@@ -1,0 +1,43 @@
+ecs = Ecs.new
+feed = Feed.find(params[:id])
+#item = itemLookupExtra(feed.asin)
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+ xml.channel do
+
+   h = ecs.itemLookupExtra(feed.asin)
+
+   listings = ecs.getOffers(feed.asin, 777) # feed.max_price
+
+   xml.title       "cheepr.com - " + h["title"]
+   xml.link        url_for :only_path => false, :controller => 'feeds', :action => 'edit', :id => 999
+   xml.description "get your amazon stuff for less"
+
+   xml.item do
+     xml.title       "New Feed:" + h["title"]
+     xml.link        url_for :only_path => false, :controller => 'feeds', :action => 'edit', :id => 999
+     xml.description "If you are reading this then your feed has been created successfully. Once
+    any Marketplace listings are found matching your criteria, you'll be alerted through your
+    feedreader."
+    end"
+
+   listings.each do |listing|
+
+   #if matches_criteria(feed, listing)
+
+
+
+     xml.item do
+       xml.title       "New Match: " + h["title"] +", " + listing['condition'] + " for " + listing['formattedprice']
+       xml.link        url_for(:action => 'go', :id => feed.id, :only_path => false)
+       xml.description( h(render :partial =>'rss_desc', :locals => { :listing => listing}))
+     end
+     
+     
+     
+   #end # end if
+   
+ end # each
+
+ end # end channel
+end # end rss

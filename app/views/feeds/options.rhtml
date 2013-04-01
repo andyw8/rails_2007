@@ -1,0 +1,85 @@
+<% form_for :feed, {:html => {:id => 'myform'}, :url => {:action => :create}} do |form| %>
+<%= form.hidden_field :id, {'value' => params[:id]} %>
+<%= form.hidden_field :asin, {'value' => params[:id]} %>
+	
+<% ecs = Ecs.new
+item = ecs.itemLookupExtra(params[:id]) %>
+
+
+<p><%= image_tag item['medium_image'] %><br>
+<strong><%= item['title'] %></strong></p>
+
+<p><%= image_tag @ar.image %></p>
+
+<h2><%= %></h2>	
+
+<h3>Your Criteria</h3>
+
+<p><label for="feed_max_price">Maximum Price: (excluding shipping)</label>
+<%= @ar.currency_symbol %> <%= form.text_field :max_price, :size => 10  %></p>
+
+<p>(many more options coming soon)</p>
+
+<div style="display: none;">
+
+<p><%= link_to_function "&gt;&gt; Advanced Options", "Effect.BlindDown('advancedOptions')" %></p>
+
+<div id="advancedOptions" style="display:none">
+
+<p><%= link_to_function "&lt;&lt;Advanced Options", "Effect.BlindUp('advancedOptions')" %></p>
+
+<p><label for="feed_min_price">Minimum Price:</label>
+<%= form.text_field :min_price, :size => 10 %></p>
+
+<p>Condition:
+
+<%= form.check_box :condition_new %>
+
+<label for="feed_condition_new">New</label>
+<%= form.check_box :condition_used %>
+
+<label for="feed_condition_used">Used</label>
+
+<%= form.check_box :condition_collectable %>
+<label for="feed_condition_collectable">Collectable</label></p>
+
+
+<p><label for="feed_min_star_rating">Minimum Seller Rating: </label>
+<%= form.text_field :min_star_rating, :size => 3  %> (0.0 to 5.0, suggested value is 4.5):</p>
+
+<p><%= form.check_box :include_new_sellers  %>
+<label for="feed_include_new_sellers">Include new sellers</label><br/></p>
+
+<p><%= form.check_box :include_international  %>
+<label for="feed_include_international">Include international sellers</label><br/></p>
+
+<p><label for="feed_text_include">Match only listing descriptions containing the text:</label><br/>
+<%= form.text_area :text_include, :rows => 3 %><br/>
+(case-insensitive substring match)</p>
+
+<p><label for="feed_text_exclude">Ignore listing descriptions containing the text:</label><br/>
+<%= form.text_area :text_exclude, :rows => 3 %><br/>
+(case-insensitive substring match)</p>
+</div>
+
+</div>
+
+<%= submit_tag "Create Feed", :action => "create" %>
+<br>
+<%= form.hidden_field :amazon_region_id, {:value => 1} %>
+
+<%= render(:partial => "preview") %> 
+
+<%= observe_form 'myform',
+ # :function => 'preview',
+  :frequency => 1.0, 
+  :update => 'preview',
+  #:on => 'blur',
+  :before => "Element.show('spinner')", 
+  :complete => "Element.hide('spinner')",
+ #:submit     =>  'myform' # see http://www.elevatedrails.com/articles/2006/12/20/using-observe_form/
+  :url => {:action=>'preview', :only_path => false}
+  #:with => "'search_string=' + encodeURIComponent(value)"
+%>
+
+<% end %>

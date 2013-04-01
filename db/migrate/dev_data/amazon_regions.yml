@@ -1,0 +1,53 @@
+amazon us:
+    short_name: us
+    full_name: United States
+    currency_symbol:  $
+    domain: amazon.com
+    image: http://ec1.images-amazon.com/images/G/01/nav2/images/skins/teal/logo-off._V46904752_.gif
+    associate_id: cheeprcom-20
+    shipping_rates: http://www.amazon.com/gp/help/customer/display.html/?nodeId=537734
+   
+
+amazon canada:
+    short_name: ca
+    full_name: Canada
+    currency_symbol: CDN$
+    domain: amazon.ca
+    image: http://ec1.images-amazon.com/images/G/15/navigation/amazon-logo._V45731834_.gif
+    associate_id: cheeprcom0a-20
+    
+
+amazon uk:
+    short_name: uk
+    full_name: United Kingdom
+    currency_symbol: £
+    domain: amazon.co.uk
+    image: http://ec1.images-amazon.com/images/G/02/uk-shared/logos/amazon-logo-151x32._V45462390_.gif
+    associate_id: amazocoukrssf-21
+    shipping_rates: http://www.amazon.co.uk/gp/help/customer/display.html/?nodeId=3149611
+    
+
+
+amazon france:
+    short_name: fr
+    full_name: France
+    currency_symbol: EUR
+    domain: amazon.fr
+    image: http://ec1.images-amazon.com/images/G/08/include/navigation/logo-153x32._V45687414_.gif
+    associate_id: cheeprcom-21!
+
+amazon germany:
+    short_name: de
+    full_name: Germany
+    currency_symbol: EUR
+    domain: amazon.de
+    image: http://ec1.images-amazon.com/images/G/03/general/de-logo-153x37._V46914763_.gif
+    associate_id: cheepr-21
+
+amazon japan:
+    short_name: jp
+    full_name: Japan
+    currency_symbol: YEN
+    domain: amazon.co.jp
+    image: http://g-ec2.images-amazon.com/images/G/09/icons/amazon-logo._V45729214_.gif
+    associate_id: none
